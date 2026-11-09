@@ -1,0 +1,108 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-ivory: var(--ivory);
+  --color-maroon: var(--maroon);
+  --color-umber: var(--umber);
+  --color-umber-foreground: var(--umber-foreground);
+}
+
+:root {
+  --radius: 2px;
+  --ivory: oklch(0.965 0.018 85);
+  --gold: oklch(0.76 0.105 78);
+  --maroon: oklch(0.33 0.11 20);
+  --umber: oklch(0.17 0.02 45);
+  --umber-foreground: oklch(0.94 0.025 85);
+  --background: var(--ivory);
+  --foreground: oklch(0.2 0.025 40);
+  --card: oklch(0.985 0.012 85);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: var(--maroon);
+  --primary-foreground: var(--ivory);
+  --secondary: oklch(0.92 0.03 80);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.93 0.02 80);
+  --muted-foreground: oklch(0.45 0.03 50);
+  --accent: var(--gold);
+  --accent-foreground: var(--umber);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.85 0.03 75);
+  --input: var(--border);
+  --ring: var(--gold);
+  --gradient-veil: linear-gradient(180deg, oklch(0.12 0.02 40 / 0.55) 0%, oklch(0.12 0.02 40 / 0.1) 40%, oklch(0.12 0.02 40 / 0.85) 100%);
+  --gradient-gold: linear-gradient(120deg, oklch(0.68 0.1 70), oklch(0.85 0.09 85), oklch(0.68 0.1 70));
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+@utility veil { background: var(--gradient-veil); }
+@utility text-gold-sheen {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility btn-gold {
+  background: var(--gradient-gold);
+  color: var(--umber);
+}
+
+@keyframes scroll-line { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+.animate-scroll-line { animation: scroll-line 2.2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-line { animation: none; }
+}
